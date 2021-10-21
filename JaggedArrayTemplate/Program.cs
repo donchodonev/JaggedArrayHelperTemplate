@@ -188,5 +188,39 @@
                 coordinates.Col++;
             }
         }
+
+        public static void MoveOnValidIndex(Coordinates coordinates, string direction, char[][] jaggedArray)
+        {
+            string directionNormalized = direction.ToLower();
+
+            if (directionNormalized == "up")
+            {
+                if (IsIndexValid(jaggedArray, coordinates.Row - 1, coordinates.Col))
+                {
+                    coordinates.Row--;
+                }
+            }
+            if (directionNormalized == "down")
+            {
+                if (IsIndexValid(jaggedArray, coordinates.Row + 1, coordinates.Col))
+                {
+                    coordinates.Row++;
+                }
+            }
+            if (directionNormalized == "left")
+            {
+                if (IsIndexValid(jaggedArray, coordinates.Row, coordinates.Col - 1))
+                {
+                    coordinates.Col--;
+                }
+            }
+            if (directionNormalized == "right")
+            {
+                if (IsIndexValid(jaggedArray, coordinates.Row, coordinates.Col + 1))
+                {
+                    coordinates.Col++;
+                }
+            }
+        }
     }
 }
