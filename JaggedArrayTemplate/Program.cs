@@ -1,6 +1,7 @@
 ﻿namespace JaggedArrayTemplate
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     class Program
@@ -128,32 +129,20 @@
                          .ToArray();
             }
         }
-        /// <summary>
-        /// Checks if a specific token of type string is found at the specified index
-        /// </summary>
-        /// <param name="jaggedArray"></param>
-        /// <param name="row"></param>
-        /// <param name="col"></param>
-        /// <param name="token"></param>
-        /// <returns></returns>
-        public static bool IsTokenFound(string[][] jaggedArray, int row, int col, string token)
-        {
-            return jaggedArray[row][col] == token;
-        }
-        /// <summary>
-        /// Checks if a specific token of type char is found at the specified index
-        /// </summary>
-        /// <param name="jaggedArray"></param>
-        /// <param name="row"></param>
-        /// <param name="col"></param>
-        /// <param name="token"></param>
-        /// <returns></returns>
-        public static bool IsTokenFound(char[][] jaggedArray, int row, int col, char token)
-        {
-            return jaggedArray[row][col] == token;
-        }
+       
         public class Coordinates : IEquatable<Coordinates>
         {
+            public Coordinates()
+            {
+
+            }
+
+            public Coordinates(int row, int col)
+            {
+                Row = row;
+                Col = col;
+            }
+
             public int Row { get; set; }
             public int Col { get; set; }
 
@@ -221,6 +210,43 @@
                     coordinates.Col++;
                 }
             }
+        }
+
+        public static Coordinates GetCoordinates(char token, char[][] jaggedArray)
+        {
+            Coordinates coordinates = new Coordinates();
+
+            for (int row = 0; row < jaggedArray.Length; row++)
+            {
+                for (int col = 0; col < jaggedArray[row].Length; col++)
+                {
+                    if (jaggedArray[row][col] == token)
+                    {
+                        coordinates.Row = row;
+                        coordinates.Col = col;
+                    }
+                }
+            }
+
+            return coordinates;
+        }
+
+        public static List<Coordinates> GetCoordinatesList(char token, char[][] jaggedArray)
+        {
+            List<Coordinates> coordinates = new List<Coordinates>();
+
+            for (int row = 0; row < jaggedArray.Length; row++)
+            {
+                for (int col = 0; col < jaggedArray[row].Length; col++)
+                {
+                    if (jaggedArray[row][col] == token)
+                    {
+                        coordinates.Add(new Coordinates(row,col));
+                    }
+                }
+            }
+
+            return coordinates;
         }
     }
 }
